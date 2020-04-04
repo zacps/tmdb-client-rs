@@ -1,5 +1,7 @@
 #[macro_use]
 extern crate serde_derive;
+#[macro_use]
+extern crate thiserror;
 
 extern crate reqwest;
 extern crate serde;
@@ -10,27 +12,12 @@ pub mod apis;
 pub mod models;
 pub mod files;
 
-#[derive(Debug)]
+#[derive(Debug, Error)]
 pub enum Error {
-    Reqwest(reqwest::Error),
-    Serde(serde_json::Error),
-    Io(std::io::Error),
-}
-
-impl From<reqwest::Error> for Error {
-    fn from(e: reqwest::Error) -> Self {
-        Error::Reqwest(e)
-    }
-}
-
-impl From<serde_json::Error> for Error {
-    fn from(e: serde_json::Error) -> Self {
-        Error::Serde(e)
-    }
-}
-
-impl From<std::io::Error> for Error {
-    fn from(e: std::io::Error) -> Self {
-        Error::Io(e)
-    }
+    #[error(transparent)]
+    Reqwest(#[from] reqwest::Error),
+    #[error(transparent)]
+    Serde(#[from] serde_json::Error),
+    #[error(transparent)]
+    Io(#[from] std::io::Error),
 }

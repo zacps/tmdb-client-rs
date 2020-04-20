@@ -10,7 +10,7 @@
 
 use std::borrow::Borrow;
 use std::option::Option;
-use std::rc::Rc;
+use std::sync::Arc;
 
 use reqwest;
 
@@ -18,11 +18,11 @@ use super::{configuration, urlencode};
 use crate::Error;
 
 pub struct AccountApiClient {
-    configuration: Rc<configuration::Configuration>,
+    configuration: Arc<configuration::Configuration>,
 }
 
 impl AccountApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> AccountApiClient {
+    pub fn new(configuration: Arc<configuration::Configuration>) -> AccountApiClient {
         AccountApiClient {
             configuration,
         }

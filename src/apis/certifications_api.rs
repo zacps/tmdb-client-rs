@@ -9,7 +9,7 @@
  */
 
 use std::borrow::Borrow;
-use std::rc::Rc;
+use std::sync::Arc;
 
 use reqwest;
 
@@ -17,11 +17,11 @@ use super::configuration;
 use crate::Error;
 
 pub struct CertificationsApiClient {
-    configuration: Rc<configuration::Configuration>,
+    configuration: Arc<configuration::Configuration>,
 }
 
 impl CertificationsApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> CertificationsApiClient {
+    pub fn new(configuration: Arc<configuration::Configuration>) -> CertificationsApiClient {
         CertificationsApiClient {
             configuration,
         }

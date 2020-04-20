@@ -10,7 +10,7 @@
 
 use std::borrow::Borrow;
 use std::option::Option;
-use std::rc::Rc;
+use std::sync::Arc;
 
 use reqwest;
 
@@ -18,11 +18,11 @@ use super::configuration;
 use crate::Error;
 
 pub struct TVApiClient {
-    configuration: Rc<configuration::Configuration>,
+    configuration: Arc<configuration::Configuration>,
 }
 
 impl TVApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> TVApiClient {
+    pub fn new(configuration: Arc<configuration::Configuration>) -> TVApiClient {
         TVApiClient {
             configuration,
         }

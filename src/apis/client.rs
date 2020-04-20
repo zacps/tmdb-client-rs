@@ -1,10 +1,10 @@
 use std::env;
-use std::rc::Rc;
+use std::sync::Arc;
 
 use super::configuration::Configuration;
 
 pub struct APIClient {
-    configuration: Rc<Configuration>,
+    configuration: Arc<Configuration>,
     account_api: Box<dyn crate::apis::AccountApi>,
     authentication_api: Box<dyn crate::apis::AuthenticationApi>,
     certifications_api: Box<dyn crate::apis::CertificationsApi>,
@@ -32,33 +32,33 @@ pub struct APIClient {
 
 impl APIClient {
     pub fn new(configuration: Configuration) -> APIClient {
-        let rc = Rc::new(configuration);
+        let arc = Arc::new(configuration);
 
         APIClient {
-            configuration: rc.clone(),
-            account_api: Box::new(crate::apis::AccountApiClient::new(rc.clone())),
-            authentication_api: Box::new(crate::apis::AuthenticationApiClient::new(rc.clone())),
-            certifications_api: Box::new(crate::apis::CertificationsApiClient::new(rc.clone())),
-            changes_api: Box::new(crate::apis::ChangesApiClient::new(rc.clone())),
-            collections_api: Box::new(crate::apis::CollectionsApiClient::new(rc.clone())),
-            companies_api: Box::new(crate::apis::CompaniesApiClient::new(rc.clone())),
-            configuration_api: Box::new(crate::apis::ConfigurationApiClient::new(rc.clone())),
-            credits_api: Box::new(crate::apis::CreditsApiClient::new(rc.clone())),
-            discover_api: Box::new(crate::apis::DiscoverApiClient::new(rc.clone())),
-            find_api: Box::new(crate::apis::FindApiClient::new(rc.clone())),
-            genres_api: Box::new(crate::apis::GenresApiClient::new(rc.clone())),
-            guest_sessions_api: Box::new(crate::apis::GuestSessionsApiClient::new(rc.clone())),
-            keywords_api: Box::new(crate::apis::KeywordsApiClient::new(rc.clone())),
-            lists_api: Box::new(crate::apis::ListsApiClient::new(rc.clone())),
-            movies_api: Box::new(crate::apis::MoviesApiClient::new(rc.clone())),
-            networks_api: Box::new(crate::apis::NetworksApiClient::new(rc.clone())),
-            people_api: Box::new(crate::apis::PeopleApiClient::new(rc.clone())),
-            reviews_api: Box::new(crate::apis::ReviewsApiClient::new(rc.clone())),
-            search_api: Box::new(crate::apis::SearchApiClient::new(rc.clone())),
-            trending_api: Box::new(crate::apis::TrendingApiClient::new(rc.clone())),
-            tv_api: Box::new(crate::apis::TVApiClient::new(rc.clone())),
-            tv_episodes_api: Box::new(crate::apis::TVEpisodesApiClient::new(rc.clone())),
-            tv_seasons_api: Box::new(crate::apis::TVSeasonsApiClient::new(rc.clone())),
+            configuration: arc.clone(),
+            account_api: Box::new(crate::apis::AccountApiClient::new(arc.clone())),
+            authentication_api: Box::new(crate::apis::AuthenticationApiClient::new(arc.clone())),
+            certifications_api: Box::new(crate::apis::CertificationsApiClient::new(arc.clone())),
+            changes_api: Box::new(crate::apis::ChangesApiClient::new(arc.clone())),
+            collections_api: Box::new(crate::apis::CollectionsApiClient::new(arc.clone())),
+            companies_api: Box::new(crate::apis::CompaniesApiClient::new(arc.clone())),
+            configuration_api: Box::new(crate::apis::ConfigurationApiClient::new(arc.clone())),
+            credits_api: Box::new(crate::apis::CreditsApiClient::new(arc.clone())),
+            discover_api: Box::new(crate::apis::DiscoverApiClient::new(arc.clone())),
+            find_api: Box::new(crate::apis::FindApiClient::new(arc.clone())),
+            genres_api: Box::new(crate::apis::GenresApiClient::new(arc.clone())),
+            guest_sessions_api: Box::new(crate::apis::GuestSessionsApiClient::new(arc.clone())),
+            keywords_api: Box::new(crate::apis::KeywordsApiClient::new(arc.clone())),
+            lists_api: Box::new(crate::apis::ListsApiClient::new(arc.clone())),
+            movies_api: Box::new(crate::apis::MoviesApiClient::new(arc.clone())),
+            networks_api: Box::new(crate::apis::NetworksApiClient::new(arc.clone())),
+            people_api: Box::new(crate::apis::PeopleApiClient::new(arc.clone())),
+            reviews_api: Box::new(crate::apis::ReviewsApiClient::new(arc.clone())),
+            search_api: Box::new(crate::apis::SearchApiClient::new(arc.clone())),
+            trending_api: Box::new(crate::apis::TrendingApiClient::new(arc.clone())),
+            tv_api: Box::new(crate::apis::TVApiClient::new(arc.clone())),
+            tv_episodes_api: Box::new(crate::apis::TVEpisodesApiClient::new(arc.clone())),
+            tv_seasons_api: Box::new(crate::apis::TVSeasonsApiClient::new(arc.clone())),
         }
     }
 

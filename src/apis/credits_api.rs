@@ -9,7 +9,7 @@
  */
 
 use std::borrow::Borrow;
-use std::rc::Rc;
+use std::sync::Arc;
 
 use reqwest;
 
@@ -17,11 +17,11 @@ use super::{configuration, urlencode};
 use crate::Error;
 
 pub struct CreditsApiClient {
-    configuration: Rc<configuration::Configuration>,
+    configuration: Arc<configuration::Configuration>,
 }
 
 impl CreditsApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> CreditsApiClient {
+    pub fn new(configuration: Arc<configuration::Configuration>) -> CreditsApiClient {
         CreditsApiClient {
             configuration,
         }

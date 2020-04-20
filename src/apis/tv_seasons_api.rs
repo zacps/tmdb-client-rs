@@ -10,7 +10,7 @@
 
 use std::borrow::Borrow;
 use std::option::Option;
-use std::rc::Rc;
+use std::sync::Arc;
 
 use reqwest;
 
@@ -18,11 +18,11 @@ use super::configuration;
 use crate::Error;
 
 pub struct TVSeasonsApiClient {
-    configuration: Rc<configuration::Configuration>,
+    configuration: Arc<configuration::Configuration>,
 }
 
 impl TVSeasonsApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> TVSeasonsApiClient {
+    pub fn new(configuration: Arc<configuration::Configuration>) -> TVSeasonsApiClient {
         TVSeasonsApiClient {
             configuration,
         }

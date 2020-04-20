@@ -10,7 +10,7 @@
 
 use std::borrow::Borrow;
 use std::option::Option;
-use std::rc::Rc;
+use std::sync::Arc;
 
 use reqwest;
 
@@ -18,11 +18,11 @@ use super::{configuration, urlencode};
 use crate::Error;
 
 pub struct FindApiClient {
-    configuration: Rc<configuration::Configuration>,
+    configuration: Arc<configuration::Configuration>,
 }
 
 impl FindApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> FindApiClient {
+    pub fn new(configuration: Arc<configuration::Configuration>) -> FindApiClient {
         FindApiClient {
             configuration,
         }
@@ -33,7 +33,7 @@ pub trait FindApi {
     fn get_find_external_id(
         &self,
         external_id: &str,
-        external_source: &str,
+        external_souarce: &str,
         language: Option<&str>,
     ) -> Result<crate::models::FindByExternalIdResults, Error>;
 }
@@ -42,7 +42,7 @@ impl FindApi for FindApiClient {
     fn get_find_external_id(
         &self,
         external_id: &str,
-        external_source: &str,
+        external_souarce: &str,
         language: Option<&str>,
     ) -> Result<crate::models::FindByExternalIdResults, Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
@@ -55,7 +55,7 @@ impl FindApi for FindApiClient {
         );
         let mut req_builder = client.get(uri_str.as_str());
 
-        req_builder = req_builder.query(&[("external_source", &external_source.to_string())]);
+        req_builder = req_builder.query(&[("external_souarce", &external_souarce.to_string())]);
         if let Some(ref s) = language {
             req_builder = req_builder.query(&[("language", &s.to_string())]);
         }

@@ -10,7 +10,7 @@
 
 use std::borrow::Borrow;
 use std::option::Option;
-use std::rc::Rc;
+use std::sync::Arc;
 
 use reqwest;
 
@@ -18,11 +18,11 @@ use super::{configuration, urlencode};
 use crate::Error;
 
 pub struct GuestSessionsApiClient {
-    configuration: Rc<configuration::Configuration>,
+    configuration: Arc<configuration::Configuration>,
 }
 
 impl GuestSessionsApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> GuestSessionsApiClient {
+    pub fn new(configuration: Arc<configuration::Configuration>) -> GuestSessionsApiClient {
         GuestSessionsApiClient {
             configuration,
         }

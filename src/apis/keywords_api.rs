@@ -10,7 +10,7 @@
 
 use std::borrow::Borrow;
 use std::option::Option;
-use std::rc::Rc;
+use std::sync::Arc;
 
 use reqwest;
 
@@ -18,11 +18,11 @@ use super::configuration;
 use crate::Error;
 
 pub struct KeywordsApiClient {
-    configuration: Rc<configuration::Configuration>,
+    configuration: Arc<configuration::Configuration>,
 }
 
 impl KeywordsApiClient {
-    pub fn new(configuration: Rc<configuration::Configuration>) -> KeywordsApiClient {
+    pub fn new(configuration: Arc<configuration::Configuration>) -> KeywordsApiClient {
         KeywordsApiClient {
             configuration,
         }

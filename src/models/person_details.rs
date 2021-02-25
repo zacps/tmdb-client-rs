@@ -18,6 +18,8 @@ pub struct PersonDetails {
     pub biography: Option<String>,
     #[serde(rename = "birthday", skip_serializing_if = "Option::is_none")]
     pub birthday: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub known_for_department: Option<String>,
     #[serde(rename = "deathday", skip_serializing_if = "Option::is_none")]
     pub deathday: Option<String>,
     #[serde(rename = "gender", skip_serializing_if = "Option::is_none")]
